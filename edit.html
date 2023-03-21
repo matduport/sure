@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Adva Edit Configuration Test Page</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+  </head>
+  
+  
+
+
+  
+  <p><img alt="Sure Logo" src="logo.jpg" style="border-style:solid;height:100px; width:100px" /></p>
+  <body>
+
+    
+<br>
+
+  <h1>Edit File</h1>
+  <form>
+    <label for="section1">Section 1:</label><br>
+    <textarea id="section1" name="section1" rows="4" cols="50"></textarea><br>
+    <label for="section2">Section 2:</label><br>
+    <textarea id="section2" name="section2" rows="4" cols="50"></textarea><br>
+    <label for="section3">Section 3:</label><br>
+    <textarea id="section3" name="section3" rows="4" cols="50"></textarea><br>
+    
+    
+    <button type="button" onclick="saveFile">Save</button>
+    
+    
+  </form>
+
+
+  
+    </form>
+    </form>
+  </body>
+  
+    <script>
+    function savefile {
+      // Get the updated text for each section of the file
+      var section1Text = document.getElementById("section1").value;
+      var section2Text = document.getElementById("section2").value;
+      var section3Text = document.getElementById("section3").value;
+
+      // Send an AJAX request to the server to save the changes
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          alert(Changes Saved Sucsessfully);
+        }
+      };
+      xhttp.open("POST", "savefile.php", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("section1=" + section1Text + "&section2=" + section2Text + "&section3=" + section3Text);
+      
+      var data = "text=" + document.getElementById("textarea").value;
+      xhttp.send(data);
+    }
+  </script>
+</html>

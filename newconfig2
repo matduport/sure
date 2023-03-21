@@ -1,0 +1,64 @@
+# DO NOT EDIT THIS LINE. FILE_TYPE=CONFIGURATION_FILE VERSION=13.7.1
+
+#
+#CLI:SUBNETWORK  Edit
+#
+home
+configure system
+  prompt "Auto Upload Test MK2.1"
+  [...]
+  [section1]
+  This is section 1
+  [section2]
+  Section 2
+  [section3]
+  Sec 3
+
+#
+#CLI:SYSTEM  Edit
+#
+home
+configure system
+  simple-ltp
+    simple-ltp-control enabled
+    file-trans-protocol tftp
+    server-ipv4-addr 192.168.1.1
+    username "ubuntu"
+    configfile-name "test"
+    back
+  data-export
+    path "/test/test"
+    server-ip ipv4 192.168.1.11
+    back
+  serial-disconnect-logoff disabled
+
+#
+#CLI:NE-1  Edit
+#
+home
+network-element ne-1
+  admin-state management
+
+#
+#CLI:ACCESS PORT-1-1-1-2  Edit
+#
+home
+network-element ne-1
+  configure nte nte101pro-1-1-1
+    configure access-port access-1-1-1-2
+      alias "sure.com"
+
+#
+#CLI:PORT N2A SHAPER-1-1-1-2-0  Edit
+#
+home
+network-element ne-1
+  configure nte nte101pro-1-1-1
+    configure access-port access-1-1-1-2
+      configure n2a-shaper port_n2a_shaper-1-1-1-2-0
+        soam-cir 64000
+        soam-eir 128000
+
+#end
+home
+admin config-file
